@@ -20,7 +20,15 @@ namespace H2Memory_Tests
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (H2.GameStateCheck() == GameState.ingame)
-                new Player(H2, 0).WeaponOut().AmmoLeft = 9999;
+            {
+                Player P = new Player();
+                for (int i = 0; i < H2.GetPlayerCount(); i++)
+                {
+                    P = new Player(H2, i);
+                    if (P.WeaponOut().Offset != null)
+                        P.WeaponOut().AmmoLeft = 9999;
+                }
+            }
         }
     }
 }
