@@ -22,11 +22,17 @@ namespace H2Memory_Tests
             if (H2.GameStateCheck() == GameState.ingame)
             {
                 Player P = new Player();
+                WeaponBase Wb = new WeaponBase();
                 for (int i = 0; i < H2.GetPlayerCount(); i++)
                 {
                     P = new Player(H2, i);
-                    if (P.WeaponOut().Offset != null)
-                        P.WeaponOut().AmmoLeft = 9999;
+                    Wb = P.WeaponOut();
+                    if (Wb.WeaponClass != Weapon.None)
+                    {
+                        Wb.WeaponHeat = -10;
+                        Wb.BatteryPower = -10;
+                        Wb.AmmoLeft = 9999;
+                    }
                 }
             }
         }
